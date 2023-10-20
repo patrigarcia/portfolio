@@ -27,8 +27,9 @@ const About: React.FC = () => {
                         <VStack spacing={4} align="start">
                             <Text fontFamily="Quicksand" fontSize={fontSizeText} color="#E0E0E0" as="b">
                                 {isSpanish
-                                    ? "👋🏼 ¡Hola! Comencé en el mundo del diseño gráfico, donde aprendí que detrás de cada diseño hay una historia y detrás de cada plataforma digital, hay un código interesante. Esta curiosidad me llevó a hacer un bootcamp intensivo y ahora me desempeño como desarrolladora fullstack."
-                                    : "👋🏼 Hey there! I started off in the graphic design world, where I learned that behind every design there's a story, and behind every digital platform, there's some cool code. This curiosity led me on a journey through an intensive bootcamp, and now I'm rocking it as a fullstack developer."}
+                                    ? "👋🏼 ¡Hola! Comencé en el mundo del diseño gráfico, donde aprendí que detrás de cada diseño hay una historia y detrás de cada plataforma digital, hay un código interesante. Esta curiosidad me llevó a hacer un bootcamp intensivo y ahora me desempeño como desarrolladora fullstack manejando las siguientes tecnologías:"
+                                    : "👋🏼 Hey there! I started off in the graphic design world, where I learned that behind every design there's a story, and behind every digital platform, there's some cool code. This curiosity led me on a journey through an intensive bootcamp, and now I'm rocking it as a fullstack developer handling the following technologies:"}
+                                <Image src="src/assets/Images/banner.png" />
                             </Text>
                             <Text fontFamily="Quicksand" fontSize={fontSizeText} color="#E0E0E0" as="b">
                                 {isSpanish
