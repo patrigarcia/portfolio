@@ -14,10 +14,10 @@ const Work: React.FC = () => {
     return (
         <>
             <ParallaxLayer offset={0.95} speed={0.5} factor={1}>
-                <Image src="src/assets/Images/nebula3.svg" alt="stars" opacity={0.9} w="100vw" h="100vh" objectFit="cover" pos="absolute" top={0} left={0} />
+                <Image src="src/assets/Images/nebula3.svg" alt="stars" opacity={0.9} w="110vw" h="110vh" objectFit="cover" pos="absolute" top={0} left={0} />
             </ParallaxLayer>
 
-            <ParallaxLayer>
+            <ParallaxLayer offset={0.99} speed={0.55} factor={1}>
                 <Image src="src/assets/Images/naranja.svg" alt="me" w={planetSize} ml={{ base: "2.5%", md: "-2%", lg: "1%" }} objectFit="cover" />
             </ParallaxLayer>
 

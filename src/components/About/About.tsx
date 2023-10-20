@@ -12,9 +12,9 @@ const About: React.FC = () => {
     return (
         <>
             <ParallaxLayer offset={0.9} speed={1} factor={1}>
-                <Image src="src/assets/Images/nebula2.svg" alt="nebula" opacity={0.9} w="100vw" h="100vh" objectFit="cover" pos="absolute" top={0} left={0} />
+                <Image src="src/assets/Images/nebula2.svg" alt="nebula" opacity={0.9} w="120vw" h="120vh" objectFit="cover" pos="absolute" top={0} left={0} />
             </ParallaxLayer>
-            <ParallaxLayer>
+            <ParallaxLayer offset={0.8} speed={1} factor={0.9}>
                 <Image src="src/assets/Images/earth.svg" alt="me" w={planetSize} objectFit="cover" mt="4%" ml="5%" />
             </ParallaxLayer>
 

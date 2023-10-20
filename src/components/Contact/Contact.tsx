@@ -46,8 +46,8 @@ const Contacto: React.FC = () => {
                 <Image src="src/assets/Images/nebula4.svg" alt="estrellas" opacity={0.9} w="100vw" h="100vh" objectFit="cover" pos="absolute" top={0} left={0} />
             </ParallaxLayer>
 
-            <ParallaxLayer>
-                <Image src="src/assets/Images/violeta.svg" alt="yo" w={tamañoPlaneta} objectFit="cover" ml="-12%" />
+            <ParallaxLayer offset={1} speed={0.58} factor={1}>
+                <Image src="src/assets/Images/violeta.svg" alt="yo" w={tamañoPlaneta} objectFit="cover" ml="-10%" />
             </ParallaxLayer>
 
             <ParallaxLayer>
