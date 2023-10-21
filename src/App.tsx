@@ -8,6 +8,7 @@ import { Box, Image, useBreakpointValue, Button, Grid, Text } from "@chakra-ui/r
 import backgroundImage from "./assets/Images/stars.svg";
 import { useColorMode } from "@chakra-ui/react";
 import { useLanguage } from "./context/LanguageContext";
+import pat from "/src/assets/Images/pat.svg";
 import "./App.scss";
 
 export default function App() {
@@ -39,7 +40,7 @@ export default function App() {
             <Box className="opaqueBackground" bgImage={`url(${backgroundImage})`}>
                 <ParallaxLayer offset={0.6} speed={-1} onClick={() => parallax.current?.scrollTo(0)} style={{ zIndex: 10, width: wParallax }}>
                     <Image
-                        src="src/assets/Images/pat.svg"
+                        src={pat}
                         w={imageSize}
                         style={{
                             transform: `translate(${marginLeftValue}, ${marginTopValue})`,

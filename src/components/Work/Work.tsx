@@ -2,6 +2,12 @@ import React from "react";
 import { ParallaxLayer } from "@react-spring/parallax";
 import { Image, Card, CardBody, Stack, Divider, Text, Button, CardFooter, Heading, Grid, Link, useBreakpointValue } from "@chakra-ui/react";
 import { useLanguage } from "../../context/LanguageContext";
+import nebula3 from "../../assets/Images/nebula3.svg";
+import naranja from "../../assets/Images/naranja.svg";
+import eventum from "../../assets/Images/eventum.gif";
+import arcade from "../../assets/Images/inicio.png";
+import musiquizz from "../../assets/Images/musiquizz.gif";
+import "../../App.scss";
 
 const Work: React.FC = () => {
     const { isSpanish } = useLanguage();
@@ -14,11 +20,11 @@ const Work: React.FC = () => {
     return (
         <>
             <ParallaxLayer offset={0.95} speed={0.5} factor={1}>
-                <Image src="src/assets/Images/nebula3.svg" alt="stars" opacity={0.9} w="110vw" h="110vh" objectFit="cover" pos="absolute" top={0} left={0} />
+                <Image src={nebula3} alt="stars" opacity={0.9} w="110vw" h="110vh" objectFit="cover" pos="absolute" top={0} left={0} />
             </ParallaxLayer>
 
             <ParallaxLayer offset={0.99} speed={0.55} factor={1}>
-                <Image src="src/assets/Images/naranja.svg" alt="me" w={planetSize} ml={{ base: "2.5%", md: "-2%", lg: "1%" }} objectFit="cover" />
+                <Image src={naranja} alt="me" w={planetSize} ml={{ base: "2.5%", md: "-2%", lg: "1%" }} objectFit="cover" />
             </ParallaxLayer>
 
             <ParallaxLayer>
@@ -28,7 +34,7 @@ const Work: React.FC = () => {
                 <Grid templateColumns={gridColumns} w={gridWidth} ml={{ base: "2.5%", md: "5%", lg: "20%" }} mt="3%">
                     <Card w={cardWidth} mb="5%">
                         <CardBody>
-                            <Image src="src/assets/Images/eventum.gif" borderRadius="lg" />
+                            <Image src={eventum} borderRadius="lg" />
                             <Stack mt="6" spacing="3">
                                 <Heading size={textSizeCard}>Eventum</Heading>
                                 <Text size={textSizeCard}>
@@ -49,7 +55,7 @@ const Work: React.FC = () => {
                     </Card>
                     <Card w={cardWidth} mb="5%">
                         <CardBody>
-                            <Image src="src/assets/Images/inicio.png" borderRadius="lg" />
+                            <Image src={arcade} borderRadius="lg" />
                             <Stack mt="6" spacing="3">
                                 <Heading size={textSizeCard}>Arcade</Heading>
                                 <Text size={textSizeCard}>
@@ -70,7 +76,7 @@ const Work: React.FC = () => {
                     </Card>
                     <Card w={cardWidth} mb="5%">
                         <CardBody>
-                            <Image src="src/assets/Images/musiquizz.gif" borderRadius="lg" />
+                            <Image src={musiquizz} borderRadius="lg" />
                             <Stack mt="6" spacing="3">
                                 <Heading size={textSizeCard}>MusiQuizz</Heading>
                                 <Text size={textSizeCard}>

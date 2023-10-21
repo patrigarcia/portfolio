@@ -3,6 +3,7 @@ import { ParallaxLayer } from "@react-spring/parallax";
 import { Image, Text, useBreakpointValue, Flex, Switch } from "@chakra-ui/react";
 import "../../App.scss";
 import { useLanguage } from "../../context/LanguageContext";
+import nebula from "../../assets/Images/nebula.svg";
 
 const Home: React.FC = () => {
     const fontSize = useBreakpointValue({ base: "2.7em", md: "3em", lg: "3.2em" });
@@ -19,7 +20,7 @@ const Home: React.FC = () => {
             </Flex>
 
             <ParallaxLayer offset={0} speed={1} factor={1}>
-                <Image src="src/assets/Images/nebula.svg" alt="stars" opacity={0.9} w="100vw" h="100vh" objectFit="cover" pos="absolute" top={0} left={0} />
+                <Image src={nebula} alt="stars" opacity={0.9} w="100vw" h="100vh" objectFit="cover" pos="absolute" top={0} left={0} />
             </ParallaxLayer>
 
             <ParallaxLayer style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh", width: "100vw" }}>

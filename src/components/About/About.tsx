@@ -2,6 +2,10 @@ import React from "react";
 import { ParallaxLayer } from "@react-spring/parallax";
 import { Image, Text, Box, VStack, useBreakpointValue } from "@chakra-ui/react";
 import { useLanguage } from "../../context/LanguageContext";
+import nebula2 from "../../assets/Images/nebula2.svg";
+import earth from "../../assets/Images/earth.svg";
+import banner from "../../assets/Images/banner.png";
+import "../../App.scss";
 
 const About: React.FC = () => {
     const planetSize = useBreakpointValue({ base: "20vh", md: "25vh", lg: "30vh" });
@@ -12,10 +16,10 @@ const About: React.FC = () => {
     return (
         <>
             <ParallaxLayer offset={0.9} speed={1} factor={1}>
-                <Image src="src/assets/Images/nebula2.svg" alt="nebula" opacity={0.9} w="120vw" h="120vh" objectFit="cover" pos="absolute" top={0} left={0} />
+                <Image src={nebula2} alt="nebula" opacity={0.9} w="120vw" h="120vh" objectFit="cover" pos="absolute" top={0} left={0} />
             </ParallaxLayer>
             <ParallaxLayer offset={0.8} speed={1} factor={0.9}>
-                <Image src="src/assets/Images/earth.svg" alt="me" w={planetSize} objectFit="cover" mt="4%" ml="5%" />
+                <Image src={earth} alt="me" w={planetSize} objectFit="cover" mt="4%" ml="5%" />
             </ParallaxLayer>
 
             <ParallaxLayer>
@@ -29,7 +33,7 @@ const About: React.FC = () => {
                                 {isSpanish
                                     ? "👋🏼 ¡Hola! Comencé en el mundo del diseño gráfico, donde aprendí que detrás de cada diseño hay una historia y detrás de cada plataforma digital, hay un código interesante. Esta curiosidad me llevó a hacer un bootcamp intensivo y ahora me desempeño como desarrolladora fullstack manejando las siguientes tecnologías:"
                                     : "👋🏼 Hey there! I started off in the graphic design world, where I learned that behind every design there's a story, and behind every digital platform, there's some cool code. This curiosity led me on a journey through an intensive bootcamp, and now I'm rocking it as a fullstack developer handling the following technologies:"}
-                                <Image src="src/assets/Images/banner.png" />
+                                <Image src={banner} />
                             </Text>
                             <Text fontFamily="Quicksand" fontSize={fontSizeText} color="#E0E0E0" as="b">
                                 {isSpanish

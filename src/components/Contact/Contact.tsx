@@ -4,8 +4,12 @@ import { Image, HStack, VStack, Heading, FormControl, FormLabel, Input, Textarea
 import emailjs from "@emailjs/browser";
 import { FaFileDownload, FaLinkedin, FaGithub } from "react-icons/fa";
 import { useLanguage } from "../../context/LanguageContext";
+import violeta from "../../assets/Images/violeta.svg";
+import nebula4 from "../../assets/Images/nebula4.svg";
+import pdf from "../../assets/Pdf/CV.pdf";
+import "../../App.scss";
 
-const Contacto: React.FC = () => {
+const Contact: React.FC = () => {
     const tamañoPlaneta = useBreakpointValue({ base: "45vh", md: "65vh", lg: "70vh" });
     const { isSpanish } = useLanguage();
 
@@ -43,11 +47,11 @@ const Contacto: React.FC = () => {
     return (
         <>
             <ParallaxLayer offset={1} speed={0.5} factor={1}>
-                <Image src="src/assets/Images/nebula4.svg" alt="estrellas" opacity={0.9} w="100vw" h="100vh" objectFit="cover" pos="absolute" top={0} left={0} />
+                <Image src={nebula4} alt="estrellas" opacity={0.9} w="100vw" h="100vh" objectFit="cover" pos="absolute" top={0} left={0} />
             </ParallaxLayer>
 
             <ParallaxLayer offset={1} speed={0.58} factor={1}>
-                <Image src="src/assets/Images/violeta.svg" alt="yo" w={tamañoPlaneta} objectFit="cover" ml="-10%" />
+                <Image src={violeta} alt="yo" w={tamañoPlaneta} objectFit="cover" ml="-10%" />
             </ParallaxLayer>
 
             <ParallaxLayer>
@@ -90,7 +94,7 @@ const Contacto: React.FC = () => {
                                         <Icon as={FaGithub} boxSize={8} />
                                     </Link>
 
-                                    <Link href="src/assets/Pdf/CV.pdf" download>
+                                    <Link href={pdf} download>
                                         <Icon as={FaFileDownload} boxSize={8} />
                                     </Link>
                                 </HStack>
@@ -104,4 +108,4 @@ const Contacto: React.FC = () => {
     );
 };
 
-export default Contacto;
+export default Contact;
