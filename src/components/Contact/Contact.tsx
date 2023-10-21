@@ -56,7 +56,7 @@ const Contact: React.FC = () => {
 
             <ParallaxLayer>
                 <Center w="100vw" h="100vh">
-                    <Box bgColor="gray.700" p={8} borderRadius="xl" w={{ base: "80%", md: "60%", lg: "30%" }}>
+                    <Box bgColor="gray.700" p={8} borderRadius="xl" w={{ base: "80%", md: "60%", lg: "30%" }} mb="20%">
                         <Grid templateColumns={{ base: "1fr", md: "repeat(1, 2fr)" }} gap={6}>
                             <GridItem>
                                 <form id="contact-form" onSubmit={handleFormSubmit}>
