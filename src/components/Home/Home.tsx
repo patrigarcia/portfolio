@@ -20,9 +20,9 @@ const Home: React.FC = () => {
     const fontSizeSubtitle = { base: "1.6em", md: "2em", lg: "2.5em" };
     return (
         <>
-            <Flex w="100%" h="100vh" alignItems="center" justifyContent="center" flexDirection="column" onMouseMove={handleMouseMove} p={{ base: "0", md: "4", lg: "8" }}>
+            <Flex w="80%" h="100vh" alignItems="center" justifyContent="center" flexDirection="column" onMouseMove={handleMouseMove} p={{ base: "0", md: "4", lg: "8" }}>
                 <Flex direction={{ base: "column", md: "row" }} w="90%" gap={{ base: 4, md: 8, lg: 8 }} alignItems="center" mt={{ base: -40, md: -300, lg: -150 }}>
-                    <Box position="relative" w={{ base: "90%", md: "100%", lg: "40%" }} h="auto" overflow="hidden" ml={{ base: "10%", md: "5%", lg: "6%" }}>
+                    <Box position="relative" w={{ base: "90%", md: "100%", lg: "40%" }} h="auto" overflow="hidden" ml={{ base: "25%", md: "5%", lg: "6%" }}>
                         <Image src={currentImage} alt="Background" w="100%" h="auto" objectFit="cover" />
                     </Box>
                     <VStack
@@ -30,7 +30,7 @@ const Home: React.FC = () => {
                         spacing={{ base: 4, md: 6, lg: 8 }}
                         justifyContent="center"
                         w={{ base: "100%", md: "40%", lg: "60%" }}
-                        ml={{ base: "20%", md: "5%", lg: "6%" }}
+                        ml={{ base: "35%", md: "5%", lg: "6%" }}
                     >
                         <Text fontSize={fontSizeTitle} fontFamily="Roddenberry">
                             I'M PATRICIA

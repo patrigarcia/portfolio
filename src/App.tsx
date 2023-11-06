@@ -11,7 +11,8 @@ import bgstar from "./assets/Images/starback.svg";
 import ColorModeSwitch from "./components/ColorModeSwitch/ColorModeSwitch";
 import "./App.scss";
 
-const DrawerContext = React.createContext({ isDrawerOpen: false, setIsDrawerOpen: (open: boolean) => {} });
+// Actualizado para remover el parámetro no utilizado.
+const DrawerContext = React.createContext({ isDrawerOpen: false, setIsDrawerOpen: (_value: boolean) => {} });
 
 type NavLinkProps = {
     to: string;
