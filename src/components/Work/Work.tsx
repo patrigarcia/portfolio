@@ -1,5 +1,9 @@
 import React from "react";
 import { Box, HStack, Image, Text, VStack, Button } from "@chakra-ui/react";
+import eventum from "../../assets/Images/eventum.gif";
+import quizz from "../../assets/Images/musiquizz.gif";
+import arcade from "../../assets/Images/inicio.png";
+
 import "../../App.scss";
 
 const Work: React.FC = () => {
@@ -11,19 +15,19 @@ const Work: React.FC = () => {
 
     const projects = [
         {
-            src: "src/assets/Images/eventum.gif",
+            src: eventum,
             alt: "Eventum App",
             description: "Eventum es una aplicación diseñada para optimizar y automatizar el proceso de creación, gestión y confirmación de eventos en Marina de Empresas.",
             repoUrl: "https://github.com/patrigarcia/eventum-front",
         },
         {
-            src: "src/assets/Images/inicio.png",
+            src: arcade,
             alt: "E-commerce Arcade",
             description: "Arcade es una plataforma e-commerce que ofrece una interfaz de usuario y una vista administrativa, permitiendo la gestión de ventas y la aplicación de diversos filtros.",
             repoUrl: "https://github.com/patrigarcia/e-commerce_frontend",
         },
         {
-            src: "src/assets/Images/musiquizz.gif",
+            src: quizz,
             alt: "Proyecto Musiquizz",
             description: "En este proyecto se desarrolló un juego de preguntas y respuestas. Se implementaron las funciones necesarias para ejecutar el código de la manera más eficiente posible.",
             repoUrl: "https://github.com/patrigarcia/Proyect_Quizz",
