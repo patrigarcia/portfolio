@@ -19,12 +19,12 @@ const Contact: React.FC = () => {
     });
 
     useEffect(() => {
-        emailjs.init("bvDBvu4Pi9I0-T3E6");
+        emailjs.init("your-emailjs-user-id");
     }, []);
 
     const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        emailjs.sendForm("service_gyrtooi", "template_pr60cyd", event.currentTarget).then(
+        emailjs.sendForm("your-service-id", "your-template-id", event.currentTarget).then(
             (result) => {
                 console.log(result.text);
                 alert(isSpanish ? "Mensaje enviado con éxito" : "Message sent successfully");
@@ -45,26 +45,26 @@ const Contact: React.FC = () => {
     const cvImage = colorMode === "light" ? cvn : cv;
 
     return (
-        <Box p={4} borderRadius="xl" w={{ base: "100%", md: "70%", lg: "50%" }}>
+        <Box p={4} borderRadius="xl" w={{ base: "100%", md: "70%", lg: "50%" }} mx="auto">
             <VStack spacing={6}>
                 <Heading fontFamily="Quicksand" fontSize="1.5em">
-                    {isSpanish ? "Contacto" : "Contact"}
+                    Contacto
                 </Heading>
-                <form id="contact-form" onSubmit={handleFormSubmit} style={{ width: "90%", margin: "auto" }}>
+                <form id="contact-form" onSubmit={handleFormSubmit} style={{ width: "90%", margin: "0 auto" }}>
                     <FormControl id="nombre" mb="10%">
-                        <FormLabel fontSize="1em">{isSpanish ? "Nombre" : "Name"}</FormLabel>
+                        <FormLabel fontSize="1em">Nombre</FormLabel>
                         <Input type="text" name="nombre" value={formData.nombre} onChange={handleInputChange} />
                     </FormControl>
                     <FormControl id="correo" mb="10%">
-                        <FormLabel fontSize="1em">{isSpanish ? "Correo Electrónico" : "Email"}</FormLabel>
+                        <FormLabel fontSize="1em">Email</FormLabel>
                         <Input type="mail" name="correo" value={formData.correo} onChange={handleInputChange} />
                     </FormControl>
                     <FormControl id="mensaje" mb="10%">
-                        <FormLabel fontSize="1em">{isSpanish ? "Mensaje" : "Message"}</FormLabel>
+                        <FormLabel fontSize="1em">Mensaje</FormLabel>
                         <Textarea name="mensaje" value={formData.mensaje} onChange={handleInputChange} />
                     </FormControl>
                     <Button colorScheme="blue" type="submit" w="100%">
-                        {isSpanish ? "Enviar" : "Send"}
+                        Enviar
                     </Button>
                 </form>
 

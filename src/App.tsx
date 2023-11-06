@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import { HStack, Image, Text, Flex, Box, IconButton, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerBody, VStack } from "@chakra-ui/react";
+import { BrowserRouter as Router, Route, Routes, Link, useLocation } from "react-router-dom";
+import { HStack, Image, Text, Flex, Box, IconButton, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerBody, VStack, useColorMode } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
@@ -10,6 +10,26 @@ import logo from "./assets/Images/LogoPat.png";
 import bgstar from "./assets/Images/starback.svg";
 import ColorModeSwitch from "./components/ColorModeSwitch/ColorModeSwitch";
 import "./App.scss";
+
+type NavLinkProps = {
+    to: string;
+    children: React.ReactNode;
+};
+
+const NavLink = ({ to, children }: NavLinkProps) => {
+    const location = useLocation();
+    const isActive = location.pathname === to;
+    const { colorMode } = useColorMode();
+    const textShadow = colorMode === "dark" ? "0px 0px 10px rgba(0, 0, 0, 1), 0px 0px 25px rgba(0, 0, 0, 1)" : "none";
+
+    return (
+        <Link to={to}>
+            <Text borderBottom={isActive ? "2px solid" : "none"} borderColor={isActive ? "blue.500" : "transparent"} _hover={{ transform: "scale(1.2)" }} pb={1} textShadow={textShadow}>
+                {children}
+            </Text>
+        </Link>
+    );
+};
 
 const App: React.FC = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -26,29 +46,16 @@ const App: React.FC = () => {
         <Router>
             <Box>
                 <Flex as="header" alignItems="center" justifyContent="space-between" w="100%" h="15vh" p={4}>
-                    <Image src={logo} alt="Logo" boxSize="50px" ml="3%" />
+                    <Link to="/" onClick={handleDrawerClose}>
+                        <Image src={logo} alt="Logo" boxSize="50px" ml={{ base: "55%", md: "60%", lg: "8vw" }} />
+                    </Link>
 
-                    <HStack spacing={8} fontFamily="Quicksand" display={{ base: "none", md: "flex" }}>
-                        <Link to="/">
-                            <Text _hover={{ transform: "scale(1.1)" }} _active={{ boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)" }}>
-                                HOME
-                            </Text>
-                        </Link>
-                        <Link to="/about">
-                            <Text _hover={{ transform: "scale(1.1)" }} _active={{ boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)" }}>
-                                ABOUT ME
-                            </Text>
-                        </Link>
-                        <Link to="/work">
-                            <Text _hover={{ transform: "scale(1.1)" }} _active={{ boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)" }}>
-                                PORTFOLIO
-                            </Text>
-                        </Link>
-                        <Link to="/contact">
-                            <Text _hover={{ transform: "scale(1.1)" }} _active={{ boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)" }}>
-                                CONTACT
-                            </Text>
-                        </Link>
+                    <HStack spacing={10} fontFamily="Quicksand" display={{ base: "none", md: "flex" }} w={{ md: "80%", lg: "40%" }}>
+                        <NavLink to="/">HOME</NavLink>
+                        <NavLink to="/about">SOBRE MI</NavLink>
+                        <NavLink to="/work">PORTFOLIO</NavLink>
+                        <NavLink to="/contact">CONTACTO</NavLink>
+                        <ColorModeSwitch />
                     </HStack>
 
                     <IconButton display={{ base: "block", md: "none" }} aria-label="Open menu" icon={<HamburgerIcon />} onClick={handleDrawerOpen} />
@@ -60,18 +67,10 @@ const App: React.FC = () => {
                             <DrawerCloseButton />
                             <DrawerBody>
                                 <VStack spacing={10} mt="30%">
-                                    <Link to="/" onClick={handleDrawerClose}>
-                                        HOME
-                                    </Link>
-                                    <Link to="/about" onClick={handleDrawerClose}>
-                                        ABOUT ME
-                                    </Link>
-                                    <Link to="/work" onClick={handleDrawerClose}>
-                                        PORTFOLIO
-                                    </Link>
-                                    <Link to="/contact" onClick={handleDrawerClose}>
-                                        CONTACT
-                                    </Link>
+                                    <NavLink to="/">HOME</NavLink>
+                                    <NavLink to="/about">SOBRE MI</NavLink>
+                                    <NavLink to="/work">PORTFOLIO</NavLink>
+                                    <NavLink to="/contact">CONTACTO</NavLink>
                                     <Box mt="8%">
                                         <ColorModeSwitch />
                                     </Box>
