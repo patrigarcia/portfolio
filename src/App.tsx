@@ -11,6 +11,8 @@ import bgstar from "./assets/Images/starback.svg";
 import ColorModeSwitch from "./components/ColorModeSwitch/ColorModeSwitch";
 import "./App.scss";
 
+const DrawerContext = React.createContext({ isDrawerOpen: false, setIsDrawerOpen: (open: boolean) => {} });
+
 type NavLinkProps = {
     to: string;
     children: React.ReactNode;
@@ -20,10 +22,11 @@ const NavLink = ({ to, children }: NavLinkProps) => {
     const location = useLocation();
     const isActive = location.pathname === to;
     const { colorMode } = useColorMode();
-    const textShadow = colorMode === "dark" ? "0px 0px 10px rgba(0, 0, 0, 1), 0px 0px 25px rgba(0, 0, 0, 1)" : "none";
+    const textShadow = colorMode === "dark" ? "0px 0px 10px rgba(0, 0, 0, 1)" : "none";
+    const { setIsDrawerOpen } = React.useContext(DrawerContext);
 
     return (
-        <Link to={to}>
+        <Link to={to} onClick={() => setIsDrawerOpen(false)}>
             <Text borderBottom={isActive ? "2px solid" : "none"} borderColor={isActive ? "blue.500" : "transparent"} _hover={{ transform: "scale(1.2)" }} pb={1} textShadow={textShadow}>
                 {children}
             </Text>
@@ -34,60 +37,50 @@ const NavLink = ({ to, children }: NavLinkProps) => {
 const App: React.FC = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-    const handleDrawerOpen = () => {
-        setIsDrawerOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setIsDrawerOpen(false);
-    };
-
     return (
-        <Router>
-            <Box>
-                <Flex as="header" alignItems="center" justifyContent="space-between" w="100%" h="15vh" p={4}>
-                    <Link to="/" onClick={handleDrawerClose}>
-                        <Image src={logo} alt="Logo" boxSize="50px" ml={{ base: "55%", md: "60%", lg: "8vw" }} />
-                    </Link>
-
-                    <HStack spacing={10} fontFamily="Quicksand" display={{ base: "none", md: "flex" }} w={{ md: "80%", lg: "40%" }}>
-                        <NavLink to="/">HOME</NavLink>
-                        <NavLink to="/about">SOBRE MI</NavLink>
-                        <NavLink to="/work">PORTFOLIO</NavLink>
-                        <NavLink to="/contact">CONTACTO</NavLink>
-                        <ColorModeSwitch />
-                    </HStack>
-
-                    <IconButton display={{ base: "block", md: "none" }} aria-label="Open menu" icon={<HamburgerIcon />} onClick={handleDrawerOpen} />
-                </Flex>
-
-                <Drawer isOpen={isDrawerOpen} placement="right" onClose={handleDrawerClose}>
-                    <DrawerOverlay>
-                        <DrawerContent bgImage={`url(${bgstar})`} bgSize="cover" bgRepeat="no-repeat" bgPos="center center">
-                            <DrawerCloseButton />
-                            <DrawerBody>
-                                <VStack spacing={10} mt="30%">
-                                    <NavLink to="/">HOME</NavLink>
-                                    <NavLink to="/about">SOBRE MI</NavLink>
-                                    <NavLink to="/work">PORTFOLIO</NavLink>
-                                    <NavLink to="/contact">CONTACTO</NavLink>
-                                    <Box mt="8%">
-                                        <ColorModeSwitch />
-                                    </Box>
-                                </VStack>
-                            </DrawerBody>
-                        </DrawerContent>
-                    </DrawerOverlay>
-                </Drawer>
-
-                <Routes>
-                    <Route path="/about" element={<About />} />
-                    <Route path="/work" element={<Work />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/" element={<Home />} />
-                </Routes>
-            </Box>
-        </Router>
+        <DrawerContext.Provider value={{ isDrawerOpen, setIsDrawerOpen }}>
+            <Router>
+                <Box>
+                    <Flex as="header" alignItems="center" justifyContent="space-between" w="100%" h="15vh" p={4}>
+                        <Link to="/" onClick={() => setIsDrawerOpen(false)}>
+                            <Image src={logo} alt="Logo" boxSize="50px" ml={{ base: "55%", md: "60%", lg: "8vw" }} />
+                        </Link>
+                        <HStack spacing={10} fontFamily="Quicksand" display={{ base: "none", md: "flex" }} w={{ md: "80%", lg: "50%" }}>
+                            <NavLink to="/">HOME</NavLink>
+                            <NavLink to="/about">SOBRE MI</NavLink>
+                            <NavLink to="/work">PORTFOLIO</NavLink>
+                            <NavLink to="/contact">CONTACTO</NavLink>
+                            <ColorModeSwitch />
+                        </HStack>
+                        <IconButton display={{ base: "block", md: "none" }} aria-label="Open menu" icon={<HamburgerIcon />} onClick={() => setIsDrawerOpen(true)} />
+                    </Flex>
+                    <Drawer isOpen={isDrawerOpen} placement="right" onClose={() => setIsDrawerOpen(false)}>
+                        <DrawerOverlay>
+                            <DrawerContent bgImage={`url(${bgstar})`} bgSize="cover" bgRepeat="no-repeat" bgPos="center center">
+                                <DrawerCloseButton />
+                                <DrawerBody>
+                                    <VStack spacing={10} mt="30%">
+                                        <NavLink to="/">HOME</NavLink>
+                                        <NavLink to="/about">SOBRE MI</NavLink>
+                                        <NavLink to="/work">PORTFOLIO</NavLink>
+                                        <NavLink to="/contact">CONTACTO</NavLink>
+                                        <Box mt="8%">
+                                            <ColorModeSwitch />
+                                        </Box>
+                                    </VStack>
+                                </DrawerBody>
+                            </DrawerContent>
+                        </DrawerOverlay>
+                    </Drawer>
+                    <Routes>
+                        <Route path="/about" element={<About />} />
+                        <Route path="/work" element={<Work />} />
+                        <Route path="/contact" element={<Contact />} />
+                        <Route path="/" element={<Home />} />
+                    </Routes>
+                </Box>
+            </Router>
+        </DrawerContext.Provider>
     );
 };
 
