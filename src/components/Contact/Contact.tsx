@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FormControl, FormLabel, Input, Textarea, Button, Box, Link, Icon, Divider, VStack, Heading, HStack, Image, useColorMode } from "@chakra-ui/react";
+import { FormControl, FormLabel, Input, Textarea, Button, Box, Link, Icon, Divider, VStack, Heading, HStack, Image, useColorMode, Text } from "@chakra-ui/react";
 import emailjs from "@emailjs/browser";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { useLanguage } from "../../context/LanguageContext";
@@ -41,7 +41,6 @@ const Contact: React.FC = () => {
         setFormData((prevState) => ({ ...prevState, [name]: value }));
     };
 
-    // Selecciona la imagen basada en el modo de color
     const cvImage = colorMode === "light" ? cvn : cv;
 
     return (
@@ -50,6 +49,9 @@ const Contact: React.FC = () => {
                 <Heading fontFamily="Quicksand" fontSize="1.5em">
                     Contacto
                 </Heading>
+                <Text w="90%" textAlign="center">
+                    Escribime para saber cómo puedo contribuir a tu proyecto o por cualquier otra duda!
+                </Text>
                 <form id="contact-form" onSubmit={handleFormSubmit} style={{ width: "90%", margin: "0 auto" }}>
                     <FormControl id="nombre" mb="10%">
                         <FormLabel fontSize="1em">Nombre</FormLabel>

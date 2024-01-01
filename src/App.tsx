@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from "react-router-dom";
 import { HStack, Image, Text, Flex, Box, IconButton, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerBody, VStack, useColorMode } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Home from "./components/Home/Home";
 import Work from "./components/Work/Work";
@@ -46,9 +45,8 @@ const App: React.FC = () => {
                         <Link to="/" onClick={() => setIsDrawerOpen(false)}>
                             <Image src={logo} alt="Logo" boxSize="50px" ml={{ base: "55%", md: "60%", lg: "8vw" }} />
                         </Link>
-                        <HStack spacing={10} fontFamily="Quicksand" display={{ base: "none", md: "flex" }} w={{ md: "80%", lg: "50%" }}>
+                        <HStack spacing={10} fontFamily="Quicksand" display={{ base: "none", md: "flex" }} w={{ md: "80%", lg: "40%" }}>
                             <NavLink to="/">HOME</NavLink>
-                            <NavLink to="/about">SOBRE MI</NavLink>
                             <NavLink to="/work">PORTFOLIO</NavLink>
                             <NavLink to="/contact">CONTACTO</NavLink>
                             <ColorModeSwitch />
@@ -62,7 +60,7 @@ const App: React.FC = () => {
                                 <DrawerBody>
                                     <VStack spacing={10} mt="30%">
                                         <NavLink to="/">HOME</NavLink>
-                                        <NavLink to="/about">SOBRE MI</NavLink>
+
                                         <NavLink to="/work">PORTFOLIO</NavLink>
                                         <NavLink to="/contact">CONTACTO</NavLink>
                                         <Box mt="8%">
@@ -74,7 +72,6 @@ const App: React.FC = () => {
                         </DrawerOverlay>
                     </Drawer>
                     <Routes>
-                        <Route path="/about" element={<About />} />
                         <Route path="/work" element={<Work />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/" element={<Home />} />
