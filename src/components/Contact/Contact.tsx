@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ParallaxLayer } from "@react-spring/parallax";
-import { Image, HStack, VStack, Heading, FormControl, FormLabel, Input, Textarea, Button, Center, Box, Grid, Link, GridItem, Icon, Text, Divider, useBreakpointValue } from "@chakra-ui/react";
+import { Image, HStack, VStack, Heading, FormControl, FormLabel, Input, Textarea, Button, Center, Box, Grid, Link, GridItem, Icon, Divider, useBreakpointValue } from "@chakra-ui/react";
 import emailjs from "@emailjs/browser";
 import { FaFileDownload, FaLinkedin, FaGithub } from "react-icons/fa";
 import { useLanguage } from "../../context/LanguageContext";
@@ -51,7 +51,7 @@ const Contact: React.FC = () => {
             </ParallaxLayer>
 
             <ParallaxLayer offset={1} speed={0.58} factor={1}>
-                <Image src={violeta} alt="yo" w={tamañoPlaneta} objectFit="cover" ml="-10%" />
+                <Image src={violeta} alt="yo" w={tamañoPlaneta} objectFit="cover" ml="10%" />
             </ParallaxLayer>
 
             <ParallaxLayer>
@@ -98,7 +98,6 @@ const Contact: React.FC = () => {
                                         <Icon as={FaFileDownload} boxSize={8} />
                                     </Link>
                                 </HStack>
-                                <Text ml={{ base: "75%", md: "75%", lg: "75%" }}>{isSpanish ? "CV" : "Resume"}</Text>
                             </GridItem>
                         </Grid>
                     </Box>

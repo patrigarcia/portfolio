@@ -32,15 +32,15 @@ const Work: React.FC = () => {
                     {isSpanish ? "Portfolio" : "Portfolio"}
                 </Text>
                 <Grid templateColumns={gridColumns} w={gridWidth} ml={{ base: "2.5%", md: "5%", lg: "20%" }} mt="3%">
-                    <Card w={cardWidth} mb="5%">
+                    <Card w={cardWidth} mb="5%" opacity="0.95">
                         <CardBody>
                             <Image src={eventum} borderRadius="lg" />
                             <Stack mt="6" spacing="3">
                                 <Heading size={textSizeCard}>Eventum</Heading>
                                 <Text size={textSizeCard}>
                                     {isSpanish
-                                        ? "Eventum es una aplicación diseñada para optimizar y automatizar el proceso de creación, gestión y confirmación de eventos en Marina de Empresas."
-                                        : "Eventum is an application designed to optimize and automate the process of creating, managing, and confirming events at Marina de Empresas."}
+                                        ? "Optimiza y automatiza el proceso de creación, gestión y confirmación de eventos."
+                                        : "Optimizes and automates the process of creating, managing and confirming events."}
                                 </Text>
                             </Stack>
                         </CardBody>
@@ -53,16 +53,12 @@ const Work: React.FC = () => {
                             </Link>
                         </CardFooter>
                     </Card>
-                    <Card w={cardWidth} mb="5%">
+                    <Card w={cardWidth} mb="5%" opacity="0.95">
                         <CardBody>
                             <Image src={arcade} borderRadius="lg" />
                             <Stack mt="6" spacing="3">
                                 <Heading size={textSizeCard}>Arcade</Heading>
-                                <Text size={textSizeCard}>
-                                    {isSpanish
-                                        ? "E-commerce para la venta de videojuegos y accesorios, con categorías, filtros, vista de usuario y vista de administrador."
-                                        : "E-commerce for the sale of video games and accessories, with categories, filters, user view and administrator view."}
-                                </Text>
+                                <Text size={textSizeCard}>{isSpanish ? "Tienda e-commerce de accesorios para videojuegos" : "Video game e-commerce store"}</Text>
                             </Stack>
                         </CardBody>
                         <Divider />
@@ -74,14 +70,12 @@ const Work: React.FC = () => {
                             </Link>
                         </CardFooter>
                     </Card>
-                    <Card w={cardWidth} mb="5%">
+                    <Card w={cardWidth} mb="5%" opacity="0.95">
                         <CardBody>
                             <Image src={musiquizz} borderRadius="lg" />
                             <Stack mt="6" spacing="3">
                                 <Heading size={textSizeCard}>MusiQuizz</Heading>
-                                <Text size={textSizeCard}>
-                                    {isSpanish ? "En este proyecto se ha desarrollado un juego de preguntas y respuestas." : "In this project, a question and answer game has been developed."}
-                                </Text>
+                                <Text size={textSizeCard}>{isSpanish ? "Juego de preguntas y respuestas." : "question and answer game."}</Text>
                             </Stack>
                         </CardBody>
                         <Divider />
