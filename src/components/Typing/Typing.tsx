@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-const Typing: React.FC = () => {
+interface TypingProps {
+    as?: keyof JSX.IntrinsicElements;
+}
+
+const Typing: React.FC<TypingProps> = ({ as: Component = "div" }) => {
     const [text, setText] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
     const [index, setIndex] = useState(0);
@@ -26,7 +30,7 @@ const Typing: React.FC = () => {
         return () => clearTimeout(timeoutId);
     }, [text, isDeleting, index, phrases]);
 
-    return <div style={{ minHeight: "1em" }}>{text || "\u00A0"}</div>;
+    return <Component style={{ minHeight: "1em" }}>{text || "\u00A0"}</Component>;
 };
 
 export default Typing;

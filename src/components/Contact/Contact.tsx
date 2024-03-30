@@ -4,8 +4,8 @@ import { Image, HStack, VStack, Heading, FormControl, FormLabel, Input, Textarea
 import emailjs from "@emailjs/browser";
 import { FaFileDownload, FaLinkedin, FaGithub } from "react-icons/fa";
 import { useLanguage } from "../../context/LanguageContext";
-import violeta from "../../assets/Images/violeta.svg";
-import nebula4 from "../../assets/Images/nebula4.svg";
+import violeta from "../../assets/Images/violeta.webp";
+import nebula4 from "../../assets/Images/nebula4.webp";
 import pdf from "../../assets/Pdf/CV.pdf";
 import "../../App.scss";
 
@@ -75,7 +75,7 @@ const Contact: React.FC = () => {
                                             <FormLabel>{isSpanish ? "Mensaje" : "Message"}</FormLabel>
                                             <Textarea name="mensaje" value={formData.mensaje} onChange={handleInputChange} />
                                         </FormControl>
-                                        <Button colorScheme="blue" type="submit" w="100%" mt="5%">
+                                        <Button colorScheme="purple" type="submit" w="100%" mt="5%">
                                             {isSpanish ? "Enviar" : "Send"}
                                         </Button>
                                     </VStack>
