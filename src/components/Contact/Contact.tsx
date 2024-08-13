@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { ParallaxLayer } from "@react-spring/parallax";
-import { Image, HStack, VStack, Heading, FormControl, FormLabel, Input, Textarea, Button, Center, Box, Grid, Link, GridItem, Icon, Divider, useBreakpointValue } from "@chakra-ui/react";
+import { Image, HStack, VStack, Heading, FormControl, FormLabel, Input, Textarea, Button, Center, Box, Grid, Link, GridItem, Icon, Divider} from "@chakra-ui/react";
 import emailjs from "@emailjs/browser";
-import { FaFileDownload, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { useLanguage } from "../../context/LanguageContext";
-import violeta from "../../assets/Images/violeta.webp";
-import nebula4 from "../../assets/Images/nebula4.webp";
-import pdf from "../../assets/Pdf/CV.pdf";
+import nebula4 from "../../assets/Images/nebula2.webp";
 import "../../App.scss";
 
 const Contact: React.FC = () => {
-    const tamañoPlaneta = useBreakpointValue({ base: "45vh", md: "65vh", lg: "70vh" });
     const { isSpanish } = useLanguage();
 
     const [formData, setFormData] = useState({
@@ -46,36 +43,32 @@ const Contact: React.FC = () => {
 
     return (
         <>
-            <ParallaxLayer offset={1} speed={0.5} factor={1}>
-                <Image src={nebula4} alt="estrellas" opacity={0.9} w="100vw" h="100vh" objectFit="cover" pos="absolute" top={0} left={0} />
+            <ParallaxLayer offset={0} speed={1.8} factor={0.1}>
+                <Image src={nebula4} alt="estrellas" opacity={0.4} w="100vw" h="100vh" objectFit="cover" pos="absolute" top={0} left={0} />
             </ParallaxLayer>
 
-            <ParallaxLayer offset={1} speed={0.58} factor={1}>
-                <Image src={violeta} alt="yo" w={tamañoPlaneta} objectFit="cover" ml="10%" />
-            </ParallaxLayer>
-
-            <ParallaxLayer>
-                <Center w="100vw" h="100vh">
+            <ParallaxLayer offset={0} speed={1.2} factor={0.1}>
+                <Center w="100vw" h="fit-content">
                     <Box bgColor="gray.700" p={8} borderRadius="xl" w={{ base: "80%", md: "60%", lg: "30%" }}>
                         <Grid templateColumns={{ base: "1fr", md: "repeat(1, 2fr)" }} gap={6}>
                             <GridItem>
                                 <form id="contact-form" onSubmit={handleFormSubmit}>
                                     <VStack spacing={4}>
                                         <Input type="hidden" name="contact_number" value={(Math.random() * 100000) | 0}></Input>
-                                        <Heading fontFamily="Roddenberry">{isSpanish ? "Contacto" : "Contact"}</Heading>
+                                        <Heading fontFamily="Ubuntu">{isSpanish ? "Contacto" : "Contact"}</Heading>
                                         <FormControl id="nombre">
-                                            <FormLabel>{isSpanish ? "Nombre" : "Name"}</FormLabel>
+                                            <FormLabel fontFamily="Ubuntu">{isSpanish ? "Nombre" : "Name"}</FormLabel>
                                             <Input type="text" name="nombre" value={formData.nombre} onChange={handleInputChange} />
                                         </FormControl>
                                         <FormControl id="correo">
-                                            <FormLabel>{isSpanish ? "Correo Electrónico" : "Email"}</FormLabel>
+                                            <FormLabel fontFamily="Ubuntu">{isSpanish ? "Correo Electrónico" : "Email"}</FormLabel>
                                             <Input type="mail" name="correo" value={formData.correo} onChange={handleInputChange} />
                                         </FormControl>
                                         <FormControl id="mensaje">
-                                            <FormLabel>{isSpanish ? "Mensaje" : "Message"}</FormLabel>
+                                            <FormLabel fontFamily="Ubuntu">{isSpanish ? "Mensaje" : "Message"}</FormLabel>
                                             <Textarea name="mensaje" value={formData.mensaje} onChange={handleInputChange} />
                                         </FormControl>
-                                        <Button colorScheme="purple" type="submit" w="100%" mt="5%">
+                                        <Button colorScheme="purple" type="submit" w="100%" mt="5%" fontFamily="Ubuntu">
                                             {isSpanish ? "Enviar" : "Send"}
                                         </Button>
                                     </VStack>
@@ -92,10 +85,6 @@ const Contact: React.FC = () => {
 
                                     <Link href="https://github.com/patrigarcia" isExternal>
                                         <Icon as={FaGithub} boxSize={8} />
-                                    </Link>
-
-                                    <Link href={pdf} download>
-                                        <Icon as={FaFileDownload} boxSize={8} />
                                     </Link>
                                 </HStack>
                             </GridItem>

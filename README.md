@@ -25,8 +25,6 @@ Here's my portfolio, a reflection of my web development learnings and projects. 
 -   **Portfolio**: My top three highlighted projects.
 -   **Contact**: A direct channel to get in touch and collaborate.
 
-![Demo Gif](src/assets/Images/gif.gif)  
-_A visual tour of the main features of my portfolio._
 
 ## ✉️ Contact
 
