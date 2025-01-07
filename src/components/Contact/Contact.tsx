@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { ParallaxLayer } from "@react-spring/parallax";
-import { Image, HStack, VStack, Heading, FormControl, FormLabel, Input, Textarea, Button, Center, Box, Grid, Link, GridItem, Icon, Divider} from "@chakra-ui/react";
+import { HStack, VStack, Heading, FormControl, FormLabel, Input, Textarea, Button, Center, Box, Grid, Link, GridItem, Icon, Divider} from "@chakra-ui/react";
 import emailjs from "@emailjs/browser";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { useLanguage } from "../../context/LanguageContext";
-import nebula4 from "../../assets/Images/nebula2.webp";
 import "../../App.scss";
 
 const Contact: React.FC = () => {
@@ -42,57 +40,69 @@ const Contact: React.FC = () => {
     };
 
     return (
-        <>
-            <ParallaxLayer offset={0} speed={1.8} factor={0.1}>
-                <Image src={nebula4} alt="estrellas" opacity={0.4} w="100vw" h="100vh" objectFit="cover" pos="absolute" top={0} left={0} />
-            </ParallaxLayer>
+        <Center w="100%" h="100vh">
+            <Box bgColor="white" p={8} borderRadius="xl" w={{ base: "80%", md: "60%", lg: "30%" }} boxShadow="lg">
+                <Grid templateColumns={{ base: "1fr", md: "repeat(1, 2fr)" }} gap={6}>
+                    <GridItem>
+                        <form id="contact-form" onSubmit={handleFormSubmit}>
+                            <VStack spacing={4}>
+                                <Input type="hidden" name="contact_number" value={(Math.random() * 100000) | 0}></Input>
+                                <Heading fontFamily="Ubuntu" color="#4A5568">{isSpanish ? "Contacto" : "Contact"}</Heading>
+                                <FormControl id="nombre">
+                                    <FormLabel fontFamily="Ubuntu" color="#4A5568">{isSpanish ? "Nombre" : "Name"}</FormLabel>
+                                    <Input 
+                                        type="text" 
+                                        name="nombre" 
+                                        value={formData.nombre} 
+                                        onChange={handleInputChange}
+                                        borderColor="#CBD5E0"
+                                        _hover={{ borderColor: "#B794F4" }}
+                                    />
+                                </FormControl>
+                                <FormControl id="correo">
+                                    <FormLabel fontFamily="Ubuntu" color="#4A5568">{isSpanish ? "Correo Electrónico" : "Email"}</FormLabel>
+                                    <Input 
+                                        type="mail" 
+                                        name="correo" 
+                                        value={formData.correo} 
+                                        onChange={handleInputChange}
+                                        borderColor="#CBD5E0"
+                                        _hover={{ borderColor: "#B794F4" }}
+                                    />
+                                </FormControl>
+                                <FormControl id="mensaje">
+                                    <FormLabel fontFamily="Ubuntu" color="#4A5568">{isSpanish ? "Mensaje" : "Message"}</FormLabel>
+                                    <Textarea 
+                                        name="mensaje" 
+                                        value={formData.mensaje} 
+                                        onChange={handleInputChange}
+                                        borderColor="#CBD5E0"
+                                        _hover={{ borderColor: "#B794F4" }}
+                                    />
+                                </FormControl>
+                                <Button colorScheme="purple" type="submit" w="100%" mt="5%" fontFamily="Ubuntu">
+                                    {isSpanish ? "Enviar" : "Send"}
+                                </Button>
+                            </VStack>
+                        </form>
 
-            <ParallaxLayer offset={0} speed={1.2} factor={0.1}>
-                <Center w="100vw" h="fit-content">
-                    <Box bgColor="gray.700" p={8} borderRadius="xl" w={{ base: "80%", md: "60%", lg: "30%" }}>
-                        <Grid templateColumns={{ base: "1fr", md: "repeat(1, 2fr)" }} gap={6}>
-                            <GridItem>
-                                <form id="contact-form" onSubmit={handleFormSubmit}>
-                                    <VStack spacing={4}>
-                                        <Input type="hidden" name="contact_number" value={(Math.random() * 100000) | 0}></Input>
-                                        <Heading fontFamily="Ubuntu">{isSpanish ? "Contacto" : "Contact"}</Heading>
-                                        <FormControl id="nombre">
-                                            <FormLabel fontFamily="Ubuntu">{isSpanish ? "Nombre" : "Name"}</FormLabel>
-                                            <Input type="text" name="nombre" value={formData.nombre} onChange={handleInputChange} />
-                                        </FormControl>
-                                        <FormControl id="correo">
-                                            <FormLabel fontFamily="Ubuntu">{isSpanish ? "Correo Electrónico" : "Email"}</FormLabel>
-                                            <Input type="mail" name="correo" value={formData.correo} onChange={handleInputChange} />
-                                        </FormControl>
-                                        <FormControl id="mensaje">
-                                            <FormLabel fontFamily="Ubuntu">{isSpanish ? "Mensaje" : "Message"}</FormLabel>
-                                            <Textarea name="mensaje" value={formData.mensaje} onChange={handleInputChange} />
-                                        </FormControl>
-                                        <Button colorScheme="purple" type="submit" w="100%" mt="5%" fontFamily="Ubuntu">
-                                            {isSpanish ? "Enviar" : "Send"}
-                                        </Button>
-                                    </VStack>
-                                </form>
+                        <Divider mt="10%" />
+                    </GridItem>
 
-                                <Divider mt="10%" />
-                            </GridItem>
+                    <GridItem>
+                        <HStack alignItems="center" justifyContent="space-evenly" mt="2%">
+                            <Link href="https://www.linkedin.com/in/patggarcia/" isExternal>
+                                <Icon as={FaLinkedin} boxSize={8} color="#4A5568" _hover={{ color: "#B794F4" }} />
+                            </Link>
 
-                            <GridItem>
-                                <HStack alignItems="center" justifyContent="space-evenly" mt="2%">
-                                    <Link href="https://www.linkedin.com/in/patggarcia/" isExternal>
-                                        <Icon as={FaLinkedin} boxSize={8} />
-                                    </Link>
-
-                                    <Link href="https://github.com/patrigarcia" isExternal>
-                                        <Icon as={FaGithub} boxSize={8} />
-                                    </Link>
-                                </HStack>
-                            </GridItem>
-                        </Grid>
-                    </Box>
-                </Center>
-            </ParallaxLayer>
-        </>
+                            <Link href="https://github.com/patrigarcia" isExternal>
+                                <Icon as={FaGithub} boxSize={8} color="#4A5568" _hover={{ color: "#B794F4" }} />
+                            </Link>
+                        </HStack>
+                    </GridItem>
+                </Grid>
+            </Box>
+        </Center>
     );
 };
 
