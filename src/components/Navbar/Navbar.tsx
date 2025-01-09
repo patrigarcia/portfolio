@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Grid,
@@ -29,24 +29,35 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ onNavigate, textStyle }) => {
   const { isSpanish, setIsSpanish } = useLanguage();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useBreakpointValue({ base: true, md: false });
-  const iconButtonSize = useBreakpointValue({ base: "2rem", md: "1.5rem" });
+  const iconButtonSize = useBreakpointValue({ base: "2rem", md: "1.5rem", lg: "1.5rem" });
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <Box
       position="fixed"
-      top={0}
-      left={0}
-      width="100%"
-      bg="linear-gradient(to bottom, rgba(13, 21, 19, 0.95), rgba(13, 21, 19, 0.8))"
+      top="0"
+      left="0"
+      right="0"
+      bg="rgba(5, 11, 21, 0.8)"
       backdropFilter="blur(8px)"
+      boxShadow={isScrolled ? "0 2px 4px rgba(0,0,0,0.1)" : "none"}
+      transition="all 0.3s ease"
       zIndex={1000}
-      p={4}
-      boxShadow="0 2px 10px rgba(0, 0, 0, 0.1)"
     >
       <Grid
         templateColumns={{
@@ -58,6 +69,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, textStyle }) => {
         justifyContent="center"
         maxW="1200px"
         mx="auto"
+        p={4}
       >
         <GridItem>
           <Image src={logo} alt="Logo" boxSize="60px" />

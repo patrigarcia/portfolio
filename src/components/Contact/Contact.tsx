@@ -1,109 +1,87 @@
-import React, { useState, useEffect } from "react";
-import { HStack, VStack, Heading, FormControl, FormLabel, Input, Textarea, Button, Center, Box, Grid, Link, GridItem, Icon, Divider} from "@chakra-ui/react";
-import emailjs from "@emailjs/browser";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
-import { useLanguage } from "../../context/LanguageContext";
-import "../../App.scss";
+import React from "react";
+import { Box, Container, VStack, FormControl, FormLabel, Input, Textarea, Button, Text, HStack, Link, Icon, useBreakpointValue } from "@chakra-ui/react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Contact: React.FC = () => {
-    const { isSpanish } = useLanguage();
+  const fontSize = useBreakpointValue({ base: "2em", md: "2em", lg: "2em" });
+  const descriptionFontSize = useBreakpointValue({ base: "1em", md: "1.1em", lg: "1.2em" });
 
-    const [formData, setFormData] = useState({
-        nombre: "",
-        correo: "",
-        mensaje: "",
-    });
+  return (
+    <Box minH="100vh" w="100%" bg="white" py={20} display="flex" alignItems="center" justifyContent="center">
+      <Container maxW="800px" px={{ base: 4, md: 8 }}>
+        <VStack spacing={12} align="stretch">
+          {/* Sección de título y descripción */}
+          <VStack spacing={4} align="start">
+            <Text fontSize={fontSize} fontFamily="Ubuntu" color="#4A5568" fontWeight="bold">
+              Contacto
+            </Text>
+            <Text fontSize={descriptionFontSize} color="#4A5568" lineHeight="1.8">
+              ¿Tienes algún proyecto en mente? Me encantaría escuchar tus ideas y ver cómo podemos trabajar juntos. Contáctame a través del formulario o encuéntrame en mis redes sociales.
+            </Text>
+            <HStack spacing={4} pt={2}>
+              <Link href="https://github.com/patrigarcia" isExternal>
+                <Icon as={FaGithub} boxSize={6} color="#4A5568" transition="transform 0.2s" _hover={{ transform: "scale(1.1)", color: "#667afb" }} />
+              </Link>
+              <Link href="https://linkedin.com/in/patricia-gonzalez-garcia" isExternal>
+                <Icon as={FaLinkedin} boxSize={6} color="#4A5568" transition="transform 0.2s" _hover={{ transform: "scale(1.1)", color: "#667afb" }} />
+              </Link>
+            </HStack>
+          </VStack>
 
-    useEffect(() => {
-        emailjs.init("bvDBvu4Pi9I0-T3E6");
-    }, []);
+          {/* Formulario de contacto */}
+          <Box as="form" bg="white" p={{ base: 6, md: 8 }} borderRadius="xl" boxShadow="lg" border="1px solid" borderColor="gray.200">
+            <VStack spacing={6}>
+              <FormControl isRequired>
+                <FormLabel color="#4A5568">Nombre</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Tu nombre"
+                  bg="white"
+                  border="1px solid"
+                  borderColor="gray.200"
+                  _hover={{ borderColor: "gray.300" }}
+                  _focus={{ borderColor: "#667afb", boxShadow: "0 0 0 1px #667afb" }}
+                  color="#4A5568"
+                />
+              </FormControl>
 
-    const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        emailjs.init("bvDBvu4Pi9I0-T3E6");
-        emailjs.sendForm("service_gyrtooi", "template_pr60cyd", event.currentTarget).then(
-            function () {
-                console.log("SUCCESS!");
-                alert(isSpanish ? "Mensaje enviado con éxito" : "Message sent successfully");
-                setFormData({ nombre: "", correo: "", mensaje: "" });
-            },
-            function (error) {
-                console.log("FAILED...", error);
-                alert(isSpanish ? "Error al enviar el mensaje" : "Failed to send message");
-            }
-        );
-    };
+              <FormControl isRequired>
+                <FormLabel color="#4A5568">Email</FormLabel>
+                <Input
+                  type="email"
+                  placeholder="tu@email.com"
+                  bg="white"
+                  border="1px solid"
+                  borderColor="gray.200"
+                  _hover={{ borderColor: "gray.300" }}
+                  _focus={{ borderColor: "#667afb", boxShadow: "0 0 0 1px #667afb" }}
+                  color="#4A5568"
+                />
+              </FormControl>
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData((prevState) => ({ ...prevState, [name]: value }));
-    };
+              <FormControl isRequired>
+                <FormLabel color="#4A5568">Mensaje</FormLabel>
+                <Textarea
+                  placeholder="Tu mensaje"
+                  rows={6}
+                  bg="white"
+                  border="1px solid"
+                  borderColor="gray.200"
+                  _hover={{ borderColor: "gray.300" }}
+                  _focus={{ borderColor: "#667afb", boxShadow: "0 0 0 1px #667afb" }}
+                  color="#4A5568"
+                />
+              </FormControl>
 
-    return (
-        <Center w="100%" h="100vh">
-            <Box bgColor="white" p={8} borderRadius="xl" w={{ base: "80%", md: "60%", lg: "30%" }} boxShadow="lg">
-                <Grid templateColumns={{ base: "1fr", md: "repeat(1, 2fr)" }} gap={6}>
-                    <GridItem>
-                        <form id="contact-form" onSubmit={handleFormSubmit}>
-                            <VStack spacing={4}>
-                                <Input type="hidden" name="contact_number" value={(Math.random() * 100000) | 0}></Input>
-                                <Heading fontFamily="Ubuntu" color="#4A5568">{isSpanish ? "Contacto" : "Contact"}</Heading>
-                                <FormControl id="nombre">
-                                    <FormLabel fontFamily="Ubuntu" color="#4A5568">{isSpanish ? "Nombre" : "Name"}</FormLabel>
-                                    <Input 
-                                        type="text" 
-                                        name="nombre" 
-                                        value={formData.nombre} 
-                                        onChange={handleInputChange}
-                                        borderColor="#CBD5E0"
-                                        _hover={{ borderColor: "#B794F4" }}
-                                    />
-                                </FormControl>
-                                <FormControl id="correo">
-                                    <FormLabel fontFamily="Ubuntu" color="#4A5568">{isSpanish ? "Correo Electrónico" : "Email"}</FormLabel>
-                                    <Input 
-                                        type="mail" 
-                                        name="correo" 
-                                        value={formData.correo} 
-                                        onChange={handleInputChange}
-                                        borderColor="#CBD5E0"
-                                        _hover={{ borderColor: "#B794F4" }}
-                                    />
-                                </FormControl>
-                                <FormControl id="mensaje">
-                                    <FormLabel fontFamily="Ubuntu" color="#4A5568">{isSpanish ? "Mensaje" : "Message"}</FormLabel>
-                                    <Textarea 
-                                        name="mensaje" 
-                                        value={formData.mensaje} 
-                                        onChange={handleInputChange}
-                                        borderColor="#CBD5E0"
-                                        _hover={{ borderColor: "#B794F4" }}
-                                    />
-                                </FormControl>
-                                <Button colorScheme="purple" type="submit" w="100%" mt="5%" fontFamily="Ubuntu">
-                                    {isSpanish ? "Enviar" : "Send"}
-                                </Button>
-                            </VStack>
-                        </form>
-
-                        <Divider mt="10%" />
-                    </GridItem>
-
-                    <GridItem>
-                        <HStack alignItems="center" justifyContent="space-evenly" mt="2%">
-                            <Link href="https://www.linkedin.com/in/patggarcia/" isExternal>
-                                <Icon as={FaLinkedin} boxSize={8} color="#4A5568" _hover={{ color: "#B794F4" }} />
-                            </Link>
-
-                            <Link href="https://github.com/patrigarcia" isExternal>
-                                <Icon as={FaGithub} boxSize={8} color="#4A5568" _hover={{ color: "#B794F4" }} />
-                            </Link>
-                        </HStack>
-                    </GridItem>
-                </Grid>
-            </Box>
-        </Center>
-    );
+              <Button type="submit" bg="#667afb" color="white" size="lg" width="full" _hover={{ bg: "#4456cb" }} _active={{ bg: "#3445ba" }} fontFamily="Ubuntu" fontSize="1.1em" py={7}>
+                Enviar mensaje
+              </Button>
+            </VStack>
+          </Box>
+        </VStack>
+      </Container>
+    </Box>
+  );
 };
 
 export default Contact;
