@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { useLanguage } from "../../context/LanguageContext";
-import logo from "../../../public/assets/Images/logo.webp";
+import logo from "../../assets/Images/logo.webp";
 
 interface NavbarProps {
   onNavigate: (page: number) => void;
