@@ -22,11 +22,12 @@ import { useLanguage } from "../../context/LanguageContext";
 import logo from "../../assets/Images/logo.webp";
 
 interface NavbarProps {
-  onNavigate: (page: number) => void;
+  scrollToSection: (sectionId: string) => void;
   textStyle: any;
+  activeSection: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onNavigate, textStyle }) => {
+const Navbar: React.FC<NavbarProps> = ({ scrollToSection, textStyle }) => {
   const { isSpanish, setIsSpanish } = useLanguage();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,6 +47,10 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, textStyle }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleNavigation = (sectionId: string) => {
+    scrollToSection(sectionId);
+  };
 
   return (
     <Box
@@ -82,28 +87,28 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, textStyle }) => {
         ) : (
           <>
             <GridItem>
-              <Button fontWeight="light" variant="unstyled" _hover={{}} onClick={() => onNavigate(0)}>
+              <Button fontWeight="light" variant="unstyled" _hover={{}} onClick={() => handleNavigation("home")}>
                 <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white">
                   {isSpanish ? "Inicio" : "Home"}
                 </Text>
               </Button>
             </GridItem>
             <GridItem>
-              <Button fontWeight="light" variant="unstyled" _hover={{}} onClick={() => onNavigate(1)}>
+              <Button fontWeight="light" variant="unstyled" _hover={{}} onClick={() => handleNavigation("about")}>
                 <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white">
                   {isSpanish ? "Sobre mi" : "About Me"}
                 </Text>
               </Button>
             </GridItem>
             <GridItem>
-              <Button variant="unstyled" _hover={{}} onClick={() => onNavigate(2)}>
+              <Button variant="unstyled" _hover={{}} onClick={() => handleNavigation("portfolio")}>
                 <Text {...textStyle} fontWeight="light" _hover={{ transform: "scale(1.2)" }} color="white">
                   {isSpanish ? "Portfolio" : "Portfolio"}
                 </Text>
               </Button>
             </GridItem>
             <GridItem>
-              <Button variant="unstyled" _hover={{}} onClick={() => onNavigate(3)}>
+              <Button variant="unstyled" _hover={{}} onClick={() => handleNavigation("contact")}>
                 <Text fontWeight="light" {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white">
                   {isSpanish ? "Contacto" : "Contact"}
                 </Text>
@@ -131,7 +136,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, textStyle }) => {
                 variant="unstyled"
                 _hover={{}}
                 onClick={() => {
-                  onNavigate(0);
+                  handleNavigation("home");
                   toggleDrawer();
                 }}
               >
@@ -144,7 +149,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, textStyle }) => {
                 variant="unstyled"
                 _hover={{}}
                 onClick={() => {
-                  onNavigate(1);
+                  handleNavigation("about");
                   toggleDrawer();
                 }}
               >
@@ -157,7 +162,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, textStyle }) => {
                 variant="unstyled"
                 _hover={{}}
                 onClick={() => {
-                  onNavigate(2);
+                  handleNavigation("portfolio");
                   toggleDrawer();
                 }}
               >
@@ -170,7 +175,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, textStyle }) => {
                 variant="unstyled"
                 _hover={{}}
                 onClick={() => {
-                  onNavigate(3);
+                  handleNavigation("contact");
                   toggleDrawer();
                 }}
               >
