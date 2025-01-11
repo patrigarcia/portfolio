@@ -61,6 +61,7 @@ export default function App() {
             </>
           } />
           <Route path="/mvpfitcheck" element={<MVPFitCheck />} />
+          <Route path="/mvp-fit-check" element={<MVPFitCheck />} />
         </Routes>
       </div>
     </Router>

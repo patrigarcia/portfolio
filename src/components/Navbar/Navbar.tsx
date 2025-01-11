@@ -17,6 +17,7 @@ import {
   VStack,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { useLanguage } from "../../context/LanguageContext";
 import logo from "../../assets/Images/logo.webp";
@@ -48,10 +49,6 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, textStyle }) => {
     };
   }, []);
 
-  const handleNavigation = (sectionId: string) => {
-    scrollToSection(sectionId);
-  };
-
   return (
     <Box
       position="fixed"
@@ -67,7 +64,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, textStyle }) => {
       <Grid
         templateColumns={{
           base: "repeat(4, 1fr)",
-          md: "1fr repeat(4, auto) 1fr",
+          md: "auto 1fr auto",
         }}
         gap={{ base: 2, md: 6 }}
         alignItems="center"
@@ -76,8 +73,10 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, textStyle }) => {
         mx="auto"
         p={4}
       >
-        <GridItem>
-          <Image src={logo} alt="Logo" boxSize="60px" />
+        <GridItem display="flex" alignItems="center">
+          <RouterLink to="/">
+            <Image src={logo} alt="Logo" boxSize="60px" />
+          </RouterLink>
         </GridItem>
 
         {isMobile ? (
@@ -86,36 +85,39 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, textStyle }) => {
           </GridItem>
         ) : (
           <>
-            <GridItem>
-              <Button fontWeight="light" variant="unstyled" _hover={{}} onClick={() => handleNavigation("home")}>
-                <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white">
-                  {isSpanish ? "Inicio" : "Home"}
-                </Text>
-              </Button>
-            </GridItem>
-            <GridItem>
-              <Button fontWeight="light" variant="unstyled" _hover={{}} onClick={() => handleNavigation("about")}>
-                <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white">
+            <GridItem display="flex" justifyContent="center" alignItems="center" gap={6}>
+              <RouterLink to="/">
+                <Button fontWeight="light" variant="unstyled" _hover={{}}>
+                  <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white" fontSize="1.1em">
+                    {isSpanish ? "Inicio" : "Home"}
+                  </Text>
+                </Button>
+              </RouterLink>
+              <Button fontWeight="light" variant="unstyled" _hover={{}} onClick={() => scrollToSection("about")}>
+                <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white" fontSize="1.1em">
                   {isSpanish ? "Sobre mi" : "About Me"}
                 </Text>
               </Button>
-            </GridItem>
-            <GridItem>
-              <Button variant="unstyled" _hover={{}} onClick={() => handleNavigation("portfolio")}>
-                <Text {...textStyle} fontWeight="light" _hover={{ transform: "scale(1.2)" }} color="white">
+              <RouterLink to="/mvp-fit-check">
+                <Button variant="unstyled" _hover={{}}>
+                  <Text {...textStyle} fontWeight="light" _hover={{ transform: "scale(1.2)" }} color="white" fontSize="1.1em">
+                    {isSpanish ? "MVP_FC" : "MVP_FC"}
+                  </Text>
+                </Button>
+              </RouterLink>
+              <Button variant="unstyled" _hover={{}} onClick={() => scrollToSection("portfolio")}>
+                <Text {...textStyle} fontWeight="light" _hover={{ transform: "scale(1.2)" }} color="white" fontSize="1.1em">
                   {isSpanish ? "Portfolio" : "Portfolio"}
                 </Text>
               </Button>
-            </GridItem>
-            <GridItem>
-              <Button variant="unstyled" _hover={{}} onClick={() => handleNavigation("contact")}>
-                <Text fontWeight="light" {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white">
+              <Button variant="unstyled" _hover={{}} onClick={() => scrollToSection("contact")}>
+                <Text fontWeight="light" {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white" fontSize="1.1em">
                   {isSpanish ? "Contacto" : "Contact"}
                 </Text>
               </Button>
             </GridItem>
             <GridItem display="flex" justifyContent="flex-end" alignItems="center">
-              <Text fontWeight="light" mr={2} fontFamily="Ubuntu, sans-serif" color="white">
+              <Text fontWeight="light" mr={2} fontFamily="Ubuntu, sans-serif" color="white" fontSize="1.1em">
                 {isSpanish ? "ES" : "EN"}
               </Text>
               <Switch colorScheme="teal" isChecked={isSpanish} onChange={() => setIsSpanish(!isSpanish)} />
@@ -131,42 +133,47 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, textStyle }) => {
           <DrawerHeader color="white">{isSpanish ? "Menú" : "Menu"}</DrawerHeader>
           <DrawerBody>
             <VStack spacing={4}>
+              <RouterLink to="/" onClick={toggleDrawer}>
+                <Button
+                  fontWeight="light"
+                  variant="unstyled"
+                  _hover={{}}
+                >
+                  <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white" fontSize="1.1em">
+                    {isSpanish ? "Inicio" : "Home"}
+                  </Text>
+                </Button>
+              </RouterLink>
               <Button
                 fontWeight="light"
                 variant="unstyled"
                 _hover={{}}
                 onClick={() => {
-                  handleNavigation("home");
+                  scrollToSection("about");
                   toggleDrawer();
                 }}
               >
-                <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white">
-                  {isSpanish ? "Inicio" : "Home"}
-                </Text>
-              </Button>
-              <Button
-                fontWeight="light"
-                variant="unstyled"
-                _hover={{}}
-                onClick={() => {
-                  handleNavigation("about");
-                  toggleDrawer();
-                }}
-              >
-                <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white">
+                <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white" fontSize="1.1em">
                   {isSpanish ? "Sobre mi" : "About Me"}
                 </Text>
               </Button>
+              <RouterLink to="/mvp-fit-check" onClick={toggleDrawer}>
+                <Button fontWeight="light" variant="unstyled" _hover={{}}>
+                  <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white" fontSize="1.1em">
+                    {isSpanish ? "MVP Fit Check" : "MVP Fit Check"}
+                  </Text>
+                </Button>
+              </RouterLink>
               <Button
                 fontWeight="light"
                 variant="unstyled"
                 _hover={{}}
                 onClick={() => {
-                  handleNavigation("portfolio");
+                  scrollToSection("portfolio");
                   toggleDrawer();
                 }}
               >
-                <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white">
+                <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white" fontSize="1.1em">
                   {isSpanish ? "Portfolio" : "Portfolio"}
                 </Text>
               </Button>
@@ -175,16 +182,16 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, textStyle }) => {
                 variant="unstyled"
                 _hover={{}}
                 onClick={() => {
-                  handleNavigation("contact");
+                  scrollToSection("contact");
                   toggleDrawer();
                 }}
               >
-                <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white">
+                <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white" fontSize="1.1em">
                   {isSpanish ? "Contacto" : "Contact"}
                 </Text>
               </Button>
               <Box display="flex" alignItems="center">
-                <Text fontWeight="light" mr={2} fontFamily="Ubuntu, sans-serif" color="white">
+                <Text fontWeight="light" mr={2} fontFamily="Ubuntu, sans-serif" color="white" fontSize="1.1em">
                   {isSpanish ? "ES" : "EN"}
                 </Text>
                 <Switch colorScheme="purple" isChecked={isSpanish} onChange={() => setIsSpanish(!isSpanish)} />
