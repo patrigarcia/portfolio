@@ -98,13 +98,6 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, textStyle }) => {
                   {isSpanish ? "Sobre mi" : "About Me"}
                 </Text>
               </Button>
-              <RouterLink to="/mvp-fit-check">
-                <Button variant="unstyled" _hover={{}}>
-                  <Text {...textStyle} fontWeight="light" _hover={{ transform: "scale(1.2)" }} color="white" fontSize="1.1em">
-                    {isSpanish ? "MVP_FC" : "MVP_FC"}
-                  </Text>
-                </Button>
-              </RouterLink>
               <Button variant="unstyled" _hover={{}} onClick={() => scrollToSection("portfolio")}>
                 <Text {...textStyle} fontWeight="light" _hover={{ transform: "scale(1.2)" }} color="white" fontSize="1.1em">
                   {isSpanish ? "Portfolio" : "Portfolio"}
@@ -157,13 +150,6 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, textStyle }) => {
                   {isSpanish ? "Sobre mi" : "About Me"}
                 </Text>
               </Button>
-              <RouterLink to="/mvp-fit-check" onClick={toggleDrawer}>
-                <Button fontWeight="light" variant="unstyled" _hover={{}}>
-                  <Text {...textStyle} _hover={{ transform: "scale(1.2)" }} color="white" fontSize="1.1em">
-                    {isSpanish ? "MVP Fit Check" : "MVP Fit Check"}
-                  </Text>
-                </Button>
-              </RouterLink>
               <Button
                 fontWeight="light"
                 variant="unstyled"
