@@ -1,1 +1,5 @@
-{"buildCommand": null, "outputDirectory": "."}
+{
+  "buildCommand": null,
+  "installCommand": null,
+  "outputDirectory": "."
+}
