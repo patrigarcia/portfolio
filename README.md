@@ -18,7 +18,7 @@ Conecto negocio, tecnología y experiencia de usuario para construir productos d
 
 ## Sobre el sitio
 
-Portfolio personal desarrollado como sitio estático puro — sin frameworks, sin dependencias, sin build steps.
+Portfolio personal desarrollado como sitio estático puro.
 
 **Stack:** HTML · CSS · JavaScript vanilla  
 **Deploy:** Vercel — [patgonzalez.me](https://www.patgonzalez.me/)
@@ -30,7 +30,7 @@ Portfolio personal desarrollado como sitio estático puro — sin frameworks, si
 - **Hero** — Presentación y acceso directo a contacto
 - **Sobre mí** — Enfoque, metodología y formación académica
 - **Experiencia** — Trayectoria profesional en producto y tecnología
-- **Contacto** — Email, GitHub y LinkedIn
+- **Contacto** — GitHub y LinkedIn
 
 ---
 
@@ -45,7 +45,6 @@ Product Operations · Systems Thinking · Behavioral Design
 
 ## Contacto
 
-- **Email:** gonzalezgpatricia28@gmail.com
 - **LinkedIn:** [patggarcia](https://www.linkedin.com/in/patggarcia/)
 - **GitHub:** [patrigarcia](https://github.com/patrigarcia)
 
